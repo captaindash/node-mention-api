@@ -17,11 +17,6 @@ npm install mention-api
 
 - 1.0.0
 
-## Contributing
-
-- Please comment your code
-- Please follow the [Angular commit guidelines][angular-commit-guidelines]
-
 ## Authors
 
 See [`package.json`](./package.json)
@@ -29,6 +24,11 @@ See [`package.json`](./package.json)
 ## License
 
 See [`UNLICENSE`](./UNLICENSE)
+
+## Contributing
+
+- Please comment your code
+- Please follow the [Angular commit guidelines][angular-commit-guidelines]
 
 [npm]: https://www.npmjs.org/package/node-mention-api
 [travis]: https://travis-ci.org/captaindash/node-mention-api
