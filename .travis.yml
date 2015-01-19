@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+- '0.10'
+
+
+addons:
+  code_climate:
+    repo_token:
+      secure: KSMAsKY1otz52t8mtW5Pm6wIVJwwDktgJQuN3N1ZqdGpPh76hl4y9OSHzRLTfpjewz9BIVKJ9vBNlhauw8fXuFpBvqSRFIQ90NBvOZqb/tbgwygM39dDryDbYcFfXMrTk4zbXfWV0YG8yVHOUDQYstPz9MWIr7hLeRexBMNHgt4=
+
+
+before_install:
+  - npm install -g npm
+  - npm install -g codeclimate-test-reporter
+
+install:
+  - npm install
+
+script:
+  - npm run test
+
+after_success:
+  - npm run cover-lcov
+  - codeclimate < ./coverage/lcov.info
+
+
+deploy:
+  provider: npm
+  email: aymeric@beaumet.me
+  api_key:
+    secure: dKxedn2pBjP/N6lHXUG87Z7on+SZauaOFYwHCloLU1LORjRuU8MydINwBZPfq1qlEk1s4FWRlJclJwuS+dh/4aFe13Kq/I/6SOxV+pBy5B/fuKAi4K48YNIr6vXTWqVIWcELM2vFIAzL11VnwgfShy2va9dyuuE/RIfEjT0Myh4=
+  on:
+    repo: captaindash/node-mention-api
+    branch: master
+    tags: true
