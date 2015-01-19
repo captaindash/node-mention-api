@@ -1,26 +1,36 @@
 language: node_js
 node_js:
 - '0.10'
+
+
 addons:
   code_climate:
     repo_token:
       secure: K8WlINTzAcqpP1NtorthO+CGXMg0m2tAcBqIb9MSNPYz5pWVrfr9ARXKrX437ve3VXeczT39IIquce41EOdGwMjQ/VEKxl/+acuYA5vsgpHPQnsLSAUc5Ote65Y+grdtQFHqXu4eOoNRpXSWGSnpp8ecPCf/2DUiHs8XSfg1EEg=
+
+GITHUB_TOKEN:
+  secure: V84W5ECJCmd0R4t5fUWiMai66VYxp6lReEGNdE25Sxy3tINTXL6TCXhKRBmAhGg/85q0xzc5AIWs62QaXUKye6s4Qn6RaWY638/nEMWtQr5DrSZ36gyoRQ9NX1n6ifbeAd3C5PdhHjkdlT3XsPjpd/lmY7t5DqZ6AdJQjQ1qhGI=
+
+
 before_install:
 - npm install -g npm
-- npm install -g codeclimate-test-reporter
+
 install:
-- npm install
+- make node_modules
+
 script:
-- npm run test
-after_success:
-- npm run cover-lcov
-- codeclimate < ./coverage/lcov.info
+- make test
+
 deploy:
+  on: # http://docs.travis-ci.com/user/deployment/heroku/#Conditional-Deploys
+    repo: captaindash/node-mention-api
+    all_branches: true # should be `on: master` (Travis bug)
+    tags: true
   provider: npm
   email: aymeric@beaumet.me
   api_key:
     secure: ctVR/CCImf65crS66QOTiM0TENRr+PEB0pP3KCZM5ovoxcuStdfU7TZjg90chKeEjFvU+YgtOS+1cMwCB0MOIqariDOrTW18siPlAF2W3EoMVc1OUwHXM24LHvKK2XMNxuuBeGxrMWnOL5N9ybo4DEgQZjPWZALh3YxMxWjMBQo=
-  on:
-    repo: captaindash/node-mention-api
-    branch: master
-    tags: true
+
+after_deploy:
+  - make push-lcov
+  - make push-docs
