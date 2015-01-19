@@ -17,7 +17,7 @@ describe('new MentionApi()', function() {
   });
 
   it('should return a new MentionApi instance (even without `new`)', function() {
-    var ret = MentionApi(VALID_OPTIONS); // jshint ignore:line
+    var ret = MentionApi(VALID_OPTIONS);
     expect(ret).to.be.an.instanceof(MentionApi);
   });
 
