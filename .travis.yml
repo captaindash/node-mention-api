@@ -1,34 +1,25 @@
 language: node_js
 node_js:
 - '0.10'
-
-
 addons:
   code_climate:
     repo_token:
-      secure: KSMAsKY1otz52t8mtW5Pm6wIVJwwDktgJQuN3N1ZqdGpPh76hl4y9OSHzRLTfpjewz9BIVKJ9vBNlhauw8fXuFpBvqSRFIQ90NBvOZqb/tbgwygM39dDryDbYcFfXMrTk4zbXfWV0YG8yVHOUDQYstPz9MWIr7hLeRexBMNHgt4=
-
-
+      secure: K8WlINTzAcqpP1NtorthO+CGXMg0m2tAcBqIb9MSNPYz5pWVrfr9ARXKrX437ve3VXeczT39IIquce41EOdGwMjQ/VEKxl/+acuYA5vsgpHPQnsLSAUc5Ote65Y+grdtQFHqXu4eOoNRpXSWGSnpp8ecPCf/2DUiHs8XSfg1EEg=
 before_install:
-  - npm install -g npm
-  - npm install -g codeclimate-test-reporter
-
+- npm install -g npm
+- npm install -g codeclimate-test-reporter
 install:
-  - npm install
-
+- npm install
 script:
-  - npm run test
-
+- npm run test
 after_success:
-  - npm run cover-lcov
-  - codeclimate < ./coverage/lcov.info
-
-
+- npm run cover-lcov
+- codeclimate < ./coverage/lcov.info
 deploy:
   provider: npm
   email: aymeric@beaumet.me
   api_key:
-    secure: dKxedn2pBjP/N6lHXUG87Z7on+SZauaOFYwHCloLU1LORjRuU8MydINwBZPfq1qlEk1s4FWRlJclJwuS+dh/4aFe13Kq/I/6SOxV+pBy5B/fuKAi4K48YNIr6vXTWqVIWcELM2vFIAzL11VnwgfShy2va9dyuuE/RIfEjT0Myh4=
+    secure: ctVR/CCImf65crS66QOTiM0TENRr+PEB0pP3KCZM5ovoxcuStdfU7TZjg90chKeEjFvU+YgtOS+1cMwCB0MOIqariDOrTW18siPlAF2W3EoMVc1OUwHXM24LHvKK2XMNxuuBeGxrMWnOL5N9ybo4DEgQZjPWZALh3YxMxWjMBQo=
   on:
     repo: captaindash/node-mention-api
     branch: master
