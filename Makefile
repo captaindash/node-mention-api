@@ -1,73 +1,60 @@
 # Binaries
 CD ?= cd
-CP ?= cp
 CODECLIMATE ?= ./node_modules/.bin/codeclimate
+CP ?= cp
 GIT ?= git
 ISTANBUL ?= ./node_modules/.bin/istanbul
 JSCS ?= ./node_modules/.bin/jscs
-JSDOC ?= ./node_modules/.bin/jsdoc
 JSHINT ?= ./node_modules/.bin/jshint
 MOCHA ?= ./node_modules/.bin/mocha
 _MOCHA ?= ./node_modules/.bin/_mocha
 NPM ?= npm
 
 # Options
-COVERAGE_DIR ?= coverage
-DOCS_DIR ?= docs
-DOCS_GIT_REMOTE ?= https://$(GITHUB_TOKEN)@github.com/captaindash/node-mention-api.git
-DOCS_GIT_BRANCH ?= gh-pages
 ISTANBUL_FLAGS ?=
 JSCS_FLAGS ?=
 JSHINT_FLAGS ?=
 MOCHA_FLAGS ?= --recursive --check-leaks
 
 # Sources
-README_MD := README.md
-PACKAGE_JSON := package.json
-JS_LIB := lib/
-JS_TEST := test/
+LIB := lib
+TESTS := test
+TESTS_COMMON := $(TESTS)/common.js
+UNIT_TESTS := $(TESTS)/unit
+FUNCTIONAL_TESTS := $(TESTS)/functional
+COVERAGE := coverage
+LCOV := $(COVERAGE)/lcov.info
 
 # Targets
 
-all: node_modules lint cover docs
+all: node_modules lint cover
 
 node_modules:
 	$(NPM) install
 
-jshint: $(JS_LIB)
+jshint: $(LIB)
 	$(JSHINT) $(JSHINT_FLAGS) $^
 
-jscs: $(JS_LIB)
+jscs: $(LIB)
 	$(JSCS) $(JSCS_FLAGS) $^
 
 lint: jshint jscs
 
-test: $(JS_TEST)
+test: test-unit test-functional
+
+test-unit: $(TESTS_COMMON) $(UNIT_TESTS)
 	$(MOCHA) $(MOCHA_FLAGS) --bail $^
 
-tdd: $(JS_TEST)
-	$(MOCHA) $(MOCHA_FLAGS) --watch --growl $^
+test-functional: $(TESTS_COMMON) $(FUNCTIONAL_TESTS)
+	$(MOCHA) $(MOCHA_FLAGS) --bail $^
 
-cover: $(JS_TEST)
-	$(ISTANBUL) $(ISTANBUL_FLAGS) cover $(_MOCHA) --dir $(COVERAGE_DIR) -- $(MOCHA_FLAGS) $^
+$(COVERAGE): $(TESTS_COMMON) $(UNIT_TESTS)
+	$(ISTANBUL) $(ISTANBUL_FLAGS) cover $(_MOCHA) --dir $(COVERAGE) -- $(MOCHA_FLAGS) $^
 
-lcov: $(JS_TEST)
-	$(ISTANBUL) $(ISTANBUL_FLAGS) cover $(_MOCHA) --dir $(COVERAGE_DIR) --report lcovonly -- $(MOCHA_FLAGS) $^
+$(LCOV): $(TESTS_COMMON) $(UNIT_TESTS)
+	$(ISTANBUL) $(ISTANBUL_FLAGS) cover $(_MOCHA) --dir $(COVERAGE) --report lcovonly -- $(MOCHA_FLAGS) $^
 
-$(DOCS_DIR): $(JS_LIB)
-	$(JSDOC) --private --recurse $(JS_LIB) --readme $(README_MD) --package $(PACKAGE_JSON) --destination $(DOCS_DIR)
+push-lcov: $(LCOV)
+	$(CODECLIMATE) < $<
 
-push-lcov: lcov
-	$(CODECLIMATE) < $(COVERAGE_DIR)/lcov.info
-
-push-docs: $(DOCS_DIR)
-	$(CD) $(DOCS_DIR)/*/*
-	$(GIT) init
-	$(GIT) config user.name "Travis-CI"
-	$(GIT) config user.email "travis@captaindash.com"
-	$(GIT) add .
-	$(GIT) commit -m 'chore: deploy the documentation'
-	$(GIT) push --force --quiet $(DOCS_GIT_REMOTE) master:$(DOCS_GIT_BRANCH) >/dev/null 2>&1
-	$(CD) -
-
-.PHONY: all jshint jscs lint test tdd cover lcov push-lcov push-docs
+.PHONY: all jshint jscs lint test test-unit test-functional push-lcov

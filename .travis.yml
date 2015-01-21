@@ -2,15 +2,15 @@ language: node_js
 node_js:
 - '0.10'
 
+env:
+  global:
+    # NODE_MENTION_API_ACCESS_TOKEN (used to run the functional tests)
+    - secure: JqVyOemdXZEdu7weHnjzxsuVH1DcHli6WYDQ96kDmDBRROPn5tSBEqv84vz+hWjTNK8uuLdboWf1LGx91AciLsDLpAGEHClSmFW5liym+bXUVh3LXZnWcDWUY+NJhnp/UU1VwFx0aqvFEHxaTffDdRMI6QdmaI5St869ocVDmHA=
 
 addons:
   code_climate:
     repo_token:
       secure: K8WlINTzAcqpP1NtorthO+CGXMg0m2tAcBqIb9MSNPYz5pWVrfr9ARXKrX437ve3VXeczT39IIquce41EOdGwMjQ/VEKxl/+acuYA5vsgpHPQnsLSAUc5Ote65Y+grdtQFHqXu4eOoNRpXSWGSnpp8ecPCf/2DUiHs8XSfg1EEg=
-
-GITHUB_TOKEN:
-  secure: V84W5ECJCmd0R4t5fUWiMai66VYxp6lReEGNdE25Sxy3tINTXL6TCXhKRBmAhGg/85q0xzc5AIWs62QaXUKye6s4Qn6RaWY638/nEMWtQr5DrSZ36gyoRQ9NX1n6ifbeAd3C5PdhHjkdlT3XsPjpd/lmY7t5DqZ6AdJQjQ1qhGI=
-
 
 before_install:
 - npm install -g npm
@@ -27,10 +27,9 @@ deploy:
     all_branches: true # should be `on: master` (Travis bug)
     tags: true
   provider: npm
-  email: aymeric@beaumet.me
+  email: npm@captaindash.com
   api_key:
-    secure: ctVR/CCImf65crS66QOTiM0TENRr+PEB0pP3KCZM5ovoxcuStdfU7TZjg90chKeEjFvU+YgtOS+1cMwCB0MOIqariDOrTW18siPlAF2W3EoMVc1OUwHXM24LHvKK2XMNxuuBeGxrMWnOL5N9ybo4DEgQZjPWZALh3YxMxWjMBQo=
+    secure: R9Ma8ajnw4JGrEf7DwLwzIZ+W2uEzt2n7xkAZhlU9pmBMLA3w/SDarcHWOdBdkT852XpjeXdVZvlG3n2Ud7vqGpoFe2vJmmnCBBgR5MjRNZ/Sh9+LGnTYNzE6ijo3nfNS17YH1eJj77NnPprW/qeYx9wc7mABQTeRXpZ4+NzR9Q=
 
 after_deploy:
   - make push-lcov
-  - make push-docs

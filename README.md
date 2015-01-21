@@ -15,7 +15,8 @@ npm install mention-api
 
 ## Changelog
 
-- 1.0.0
+- 0.1.0
+  * All endpoints implemented
 
 ## Authors
 
@@ -27,7 +28,8 @@ See [`UNLICENSE`](./UNLICENSE)
 
 ## Contributing
 
-- Please comment your code
+- Please comment your code with [JSDoc][jsdoc]
+- Please keep 100% [unit tests coverage](./test/unit)
 - Please follow the [Angular commit guidelines][angular-commit-guidelines]
 
 [npm]: https://www.npmjs.org/package/node-mention-api
@@ -42,4 +44,5 @@ See [`UNLICENSE`](./UNLICENSE)
 [daviddm-dep-img]: http://img.shields.io/david/captaindash/node-mention-api.svg?style=flat
 
 [angular-commit-guidelines]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
+[jsdoc]: http://usejsdoc.org/
 [mention-api]: https://dev.mention.com

@@ -43,7 +43,6 @@
     "beforeOpeningRoundBrace": true
   },
   "requireBlocksOnNewline": 1,
-  "disallowSpacesInsideArrayBrackets": "all",
   "disallowSpacesInsideParentheses": true,
   "requireSpacesInsideObjectBrackets": "allButNested",
   "disallowQuotedKeysInObjects": "allButReserved",
@@ -69,7 +68,6 @@
   "disallowKeywords": ["with"],
   "disallowMultipleLineStrings": true,
   "validateQuoteMarks": { "mark": "'", "escape": true },
-  "disallowTrailingComma": true,
   "requireCapitalizedConstructors": true,
   "safeContextKeyword": ["that"],
   "disallowYodaConditions": true,
