@@ -32,12 +32,12 @@ See [`UNLICENSE`](./UNLICENSE)
 - Please keep 100% [unit tests coverage](./test/unit)
 - Please follow the [Angular commit guidelines][angular-commit-guidelines]
 
-[npm]: https://www.npmjs.org/package/node-mention-api
+[npm]: https://www.npmjs.org/package/mention-api
 [travis]: https://travis-ci.org/captaindash/node-mention-api
 [codeclimate]: https://codeclimate.com/github/captaindash/node-mention-api
 [daviddm-dep]: https://david-dm.org/captaindash/node-mention-api
 
-[npm-img]: http://img.shields.io/npm/v/node-mention-api.svg?style=flat
+[npm-img]: http://img.shields.io/npm/v/mention-api.svg?style=flat
 [travis-img]: http://img.shields.io/travis/captaindash/node-mention-api/master.svg?style=flat
 [codeclimate-coverage-img]: http://img.shields.io/codeclimate/coverage/github/captaindash/node-mention-api.svg?style=flat
 [codeclimate-gpa-img]: http://img.shields.io/codeclimate/github/captaindash/node-mention-api.svg?style=flat
