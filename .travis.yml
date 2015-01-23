@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+- '0.10'
+
+env:
+  global:
+    # NODE_MENTION_API_ACCESS_TOKEN (used to run the functional tests)
+    - secure: JqVyOemdXZEdu7weHnjzxsuVH1DcHli6WYDQ96kDmDBRROPn5tSBEqv84vz+hWjTNK8uuLdboWf1LGx91AciLsDLpAGEHClSmFW5liym+bXUVh3LXZnWcDWUY+NJhnp/UU1VwFx0aqvFEHxaTffDdRMI6QdmaI5St869ocVDmHA=
+
+addons:
+  code_climate:
+    repo_token:
+      secure: K8WlINTzAcqpP1NtorthO+CGXMg0m2tAcBqIb9MSNPYz5pWVrfr9ARXKrX437ve3VXeczT39IIquce41EOdGwMjQ/VEKxl/+acuYA5vsgpHPQnsLSAUc5Ote65Y+grdtQFHqXu4eOoNRpXSWGSnpp8ecPCf/2DUiHs8XSfg1EEg=
+
+before_install:
+- npm install -g npm
+
+install:
+- make node_modules
+
+script:
+- make lint test
+
+deploy:
+  on: # http://docs.travis-ci.com/user/deployment/heroku/#Conditional-Deploys
+    repo: captaindash/node-mention-api
+    all_branches: true # should be `on: master` (Travis bug)
+    tags: true
+  provider: npm
+  email: npm@captaindash.com
+  api_key:
+    secure: R9Ma8ajnw4JGrEf7DwLwzIZ+W2uEzt2n7xkAZhlU9pmBMLA3w/SDarcHWOdBdkT852XpjeXdVZvlG3n2Ud7vqGpoFe2vJmmnCBBgR5MjRNZ/Sh9+LGnTYNzE6ijo3nfNS17YH1eJj77NnPprW/qeYx9wc7mABQTeRXpZ4+NzR9Q=
+
+after_deploy:
+  - make push-lcov
