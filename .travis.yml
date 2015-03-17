@@ -14,7 +14,7 @@ addons:
 
 notifications:
   slack:
-    secure: OHX++3JIkTQmRBXVZvrnR4D2p32R1zdcpb3D/vpCTeXgzwNMn8/jyK3snGVN1AvDCTU4knF1hreCVDEcJcHopvEZflm0a8ejT90VBWIBlRURlHj0ZZIBcXqJr16354xu1AnkIOwwBBgQECfBA9eTaW2S++5MFYj5EqR/AQIcDMY=
+    secure: MRIdQTTvHqecETMH5XAm1HIJPsErhZloCcnamD9qT/WcRQ2+apg1F8nDH/v3ywnA6Ajm+Q9GGc0tyLbkwoWmV7X6prFOm7OUg+yzmWf97zALDOg7Md2IYAzgrznm1U+wI1H3hsa9+SbxeCLktKhgMvaz/oUk60qz8j3AWNVVfhc=
 
 before_install:
 - npm install -g npm
