@@ -12,6 +12,10 @@ addons:
     repo_token:
       secure: K8WlINTzAcqpP1NtorthO+CGXMg0m2tAcBqIb9MSNPYz5pWVrfr9ARXKrX437ve3VXeczT39IIquce41EOdGwMjQ/VEKxl/+acuYA5vsgpHPQnsLSAUc5Ote65Y+grdtQFHqXu4eOoNRpXSWGSnpp8ecPCf/2DUiHs8XSfg1EEg=
 
+notifications:
+  slack:
+    secure: MRIdQTTvHqecETMH5XAm1HIJPsErhZloCcnamD9qT/WcRQ2+apg1F8nDH/v3ywnA6Ajm+Q9GGc0tyLbkwoWmV7X6prFOm7OUg+yzmWf97zALDOg7Md2IYAzgrznm1U+wI1H3hsa9+SbxeCLktKhgMvaz/oUk60qz8j3AWNVVfhc=
+
 before_install:
 - npm install -g npm
 
