@@ -15,6 +15,9 @@ npm install mention-api
 
 ## Changelog
 
+- 1.0.0
+  * Bump stable
+
 - 0.1.0
   * All endpoints implemented
 
