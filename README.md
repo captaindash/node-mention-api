@@ -15,6 +15,9 @@ npm install mention-api
 
 ## Changelog
 
+- 1.1.0
+  * Updating Joi version
+
 - 1.0.0
   * Bump stable
 
