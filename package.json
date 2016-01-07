@@ -1,6 +1,6 @@
 {
   "name": "mention-api",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A Node.js client to query the Mention API",
   "main": "index.js",
   "scripts": {
